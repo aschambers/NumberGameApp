@@ -1,57 +1,36 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Main extends CI_Controller {
 
-	// automatically loaded if no method is specified
+	public function __construct()
+	{
+		parent::__construct();
+		$this->output->enable_profiler();
+	}
 	public function index()
 	{
-		if(!isset($this->session->userdata['number']))
+		// see if the 'counter' exists in the session
+		if ($this->session->userdata('counter'))
 		{
-			$this->session->set_userdata('number', rand(1,100));
+			$counter = $this->session->userdata('counter');
+			$this->session->set_userdata('counter', $counter+1);
 		}
-		$this->load->view('index');
+		else
+		{
+			$this->session->set_userdata('counter', 1);
+		}
+		$this->load->view('index', array("counter" => $this->session->userdata("counter")));
 	}
-
-	// check the value of number in session, and check your guess
-	public function checksession()
+	public function hello()
 	{
-		// var_dump($this->input->post());
-		// die();
-
-		// if guess is too low
-		if($this->input->post('guess') < $this->session->userdata['number'])
-		{
-			$this->session->set_flashdata('result', 'Too Low!');
-		}
-
-		// if guess is too high
-		if($this->input->post('guess') > $this->session->userdata['number'])
-		{
-			$this->session->set_flashdata('result', 'Too High!');
-		}
-
-		// if guess is correct
-		if($this->input->post('guess') == $this->session->userdata['number'])
-		{
-			$this->session->set_flashdata('correct', $this->session->userdata['number']);
-		}
-		redirect('/');
+		echo "Came here";
 	}
-	
-	// reset the number upon button click
 	public function reset()
 	{
-		$this->session->unset_userdata('number');
+		$this->session->set_userdata('counter', 0);
 		redirect('/');
 	}
 }
 
-
-
-
-
-
-
-
-
+/* End of file main.php */
+/* Location: ./application/controllers/main.php */

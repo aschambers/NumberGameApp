@@ -49,8 +49,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = "main";
-$route['check'] = "main/checksession";
-$route['reset'] = "main/reset";
+$route['default_controller'] = "dashes";
+$route['home'] = "dashes";
+$route['sign'] = "/dashes/sign";
+$route['sign_in'] = "/dashes/sign_in";
+$route['add'] = "/dashes/add";
+$route['register'] = "/dashes/register_new";
+$route['login_success'] = "/dashes/login_success";
+$route['dashboard'] = "/dashboards";
+$route['log_off'] = "/dashboards/log_out";
+$route['admin'] = "/dashboards/admin";
+$route['new'] = "/dashboards/new_add";
+$route['create'] = "/dashboards/create";
+$route['dash_home'] = "/dashboards";
+$route['edit'] = "/dashboards/edit_user";
+$route['edit_info'] = "/dashboards/edit_info";
+$route['edit_info_profile'] = "/dashboards/edit_info_profile";
+$route['edit_password'] = "/dashboards/edit_pass";
+$route['edit_description'] = "/dashboards/edit_description";
+$route['post_message'] = "/dashboards/new_message";
+$route['post_comment'] = "/dashboards/new_comment";
+$route['remove'] = "/dashboards/remove";
+$route['profile/(:any)'] = "/dashboards/profile/$1";
+$route['edit_profile/(:any)'] = "/dashboards/edit_profile/$1";
+$route['edit_user'] = "dashboards/edit_user";
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
